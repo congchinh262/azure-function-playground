@@ -38,7 +38,7 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # For Windows, use windows-latest
-    environment: dev
+    environment: production
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v3
