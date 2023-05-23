@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  version: 1.0.0
+paths:
+  /blogs/{offset}/{limit}:
+    get:
+      summary: Get blogs with pagination
+      parameters:
+        - in: path
+          name: offset
+          required: true
+          schema:
+            type: integer
+          description: The offset value for pagination.
+        - in: path
+          name: limit
+          required: true
+          schema:
+            type: integer
+          description: The limit value for pagination.
+      responses:
+        '200':
+          description: Blogs retrieved successfully.
+        '500':
+          description: An error occurred on the server.
+  /blogs:
+    post:
+      summary: Create a new blog post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                author:
+                  type: string
+                  description: The author of the blog post.
+                title:
+                  type: string
+                  description: The title of the blog post.
+                body:
+                  type: string
+                  description: The body content of the blog post.
+              required:
+                - author
+                - title
+                - body
+      responses:
+        '200':
+          description: Blog post created successfully.
+        '400':
+          description: Invalid request.
+        '500':
+          description: An error occurred on the server.
+  /blog/{id}:
+    delete:
+      summary: Delete a blog post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the blog post to be deleted.
+      responses:
+        '200':
+          description: Blog post deleted successfully.
+        '400':
+          description: Invalid request.
+        '500':
+          description: An error occurred on the server.
+  
+  
